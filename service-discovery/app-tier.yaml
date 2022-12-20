@@ -13,7 +13,6 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-metadata:
   name: app-tier
   labels:
     app: app-tier
