@@ -21,9 +21,9 @@ spec:
         image: lrakai/microservices:counter-v1
         env:
         - name: API_URL
-          value: http://app-tier.deployments:8080
+          value: http://app-tier.probes:8080
       - name: poller
         image: lrakai/microservices:poller-v1
         env:
           - name: API_URL
-            value: http://app-tier.deployments:$(APP_TIER_SERVICE_PORT)
+            value: http://app-tier.probes:$(APP_TIER_SERVICE_PORT)
