@@ -24,9 +24,10 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
-  storageClassName: local-storage
-  local:
-    path: D:\intro-to-kubernetes-volumes
+  storageClassName: manual
+  hostPath:
+    path: /mnt/host/d/intro-to-kubernetes-volumes
+    type: DirectoryOrCreate
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -75,9 +76,12 @@ spec:
             - ping
           initialDelaySeconds: 5
         volumeMounts:
-          - mountPath: data
+          - mountPath: /data
             name: data-tier-volume
       volumes:
         - name: data-tier-volume
+          # hostPath:
+            # path: /run/desktop/mnt/host/d/intro-to-kubernetes-volumes
+            # type: DirectoryOrCreate
           persistentVolumeClaim:
             claimName: data-tier-volume-claim
